@@ -1,4 +1,4 @@
-package com.pluralsight.topping;
+package com.pluralsight.raysgoldenswirl.toppings;
 
 public class Specialty extends Topping {
     public Specialty(String type) {

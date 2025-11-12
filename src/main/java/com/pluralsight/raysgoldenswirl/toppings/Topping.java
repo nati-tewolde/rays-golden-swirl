@@ -1,0 +1,22 @@
+package com.pluralsight.raysgoldenswirl.toppings;
+
+public abstract class Topping {
+    private String type;
+    private int quantity;
+
+    public Topping(String type) {
+        this.type = type;
+        this.quantity = 1;
+    }
+
+    // getQuantity() to keep track of extra topping quantity (to limit extra toppings)?
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void increaseQuantity() {
+        quantity += 1;
+    }
+
+    public abstract double calculatePrice(String size);
+}

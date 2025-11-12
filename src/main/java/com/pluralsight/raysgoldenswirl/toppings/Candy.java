@@ -1,4 +1,4 @@
-package com.pluralsight.topping;
+package com.pluralsight.raysgoldenswirl.toppings;
 
 public class Candy extends Topping {
     public Candy(String type) {
