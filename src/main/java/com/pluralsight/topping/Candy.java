@@ -1,7 +1,6 @@
-package com.pluralsight;
+package com.pluralsight.topping;
 
 public class Candy extends Topping {
-
     public Candy(String type) {
         super(type);
     }
