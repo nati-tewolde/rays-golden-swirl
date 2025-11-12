@@ -9,7 +9,6 @@ public abstract class Topping {
         this.quantity = 1;
     }
 
-    // getQuantity() to keep track of extra topping quantity (to limit extra toppings)?
     public int getQuantity() {
         return quantity;
     }
