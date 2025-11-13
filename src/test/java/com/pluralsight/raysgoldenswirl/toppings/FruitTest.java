@@ -10,7 +10,7 @@ class FruitTest {
     public void calculatePrice_SmallSizeWithOneTopping_ReturnBasePrice() {
         // Arrange
         Fruit strawberry = new Fruit("strawberry");
-        String size = "s";
+        String size = "S";
         double expectedPrice = 1.00;
 
         // Act
@@ -21,7 +21,7 @@ class FruitTest {
     }
 
     @Test
-    public void calculatePrice_MediumSizeWithTwoPortions_ReturnsBasePlusExtra() {
+    public void calculatePrice_MediumSizeWithTwoServings_ReturnsBasePlusExtra() {
         // Arrange
         Fruit kiwi = new Fruit("kiwi");
         kiwi.increaseQuantity();
