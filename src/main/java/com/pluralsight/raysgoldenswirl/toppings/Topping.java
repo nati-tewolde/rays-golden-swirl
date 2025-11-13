@@ -9,6 +9,10 @@ public abstract class Topping {
         this.quantity = 1;
     }
 
+    public String getType() {
+        return type;
+    }
+
     public int getQuantity() {
         return quantity;
     }

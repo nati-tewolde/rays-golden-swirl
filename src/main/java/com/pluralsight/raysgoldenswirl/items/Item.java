@@ -7,6 +7,10 @@ public abstract class Item {
         this.type = type;
     }
 
+    public String getType() {
+        return type;
+    }
+
     public abstract double calculatePrice();
 
     public abstract void displayDetails();
