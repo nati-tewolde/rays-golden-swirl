@@ -35,5 +35,18 @@ class FruitTest {
         assertEquals(expectedPrice, actualPrice, 0.001);
     }
 
+    @Test
+    public void increaseQuantity_CalledOnce_QuantityIncrementedByOne() {
+        // Arrange
+        Fruit pineapple = new Fruit("pineapple");
+        int expectedQuantity = 2;
+
+        // Act
+        pineapple.increaseQuantity();
+
+        // Assert
+        int actualQuantity = pineapple.getQuantity();
+        assertEquals(expectedQuantity, actualQuantity);
+    }
 
 }
