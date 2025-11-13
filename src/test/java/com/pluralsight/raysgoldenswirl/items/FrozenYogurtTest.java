@@ -13,9 +13,7 @@ class FrozenYogurtTest {
     @Test
     public void addTopping_AddsMultipleToppings_AllAppearInList() {
         // Arrange
-        List<Topping> toppings = new ArrayList<>();
-        FrozenYogurt testFroyo = new FrozenYogurt("Test Froyo", "L", toppings, false);
-
+        FrozenYogurt testFroyo = new FrozenYogurt("Test Froyo", "L", false);
         Topping fruit = new Fruit("Strawberry");
         Topping candy = new Candy("Sprinkles");
         int expectedCount = 2;
@@ -25,23 +23,21 @@ class FrozenYogurtTest {
         testFroyo.addTopping(candy);
 
         // Assert
-        int actualCount = toppings.size();
+        int actualCount = testFroyo.getToppings().size();
         assertEquals(expectedCount, actualCount);
     }
 
     @Test
     public void calculatePrice_MediumSizeWithNutsFruitsAndSauce_AddsAllPrices() {
         // Arrange
-        List<Topping> toppings = new ArrayList<>();
+        FrozenYogurt testFroyo = new FrozenYogurt("Test Froyo", "M", false);
         Nuts nuts = new Nuts("Pecans");
         Fruit fruit = new Fruit("Pineapple");
         Sauce sauce = new Sauce("Caramel");
 
-        toppings.add(nuts);
-        toppings.add(fruit);
-        toppings.add(sauce);
-
-        FrozenYogurt testFroyo = new FrozenYogurt("Test Froyo", "M", toppings, false);
+        testFroyo.addTopping(nuts);
+        testFroyo.addTopping(fruit);
+        testFroyo.addTopping(sauce);
         double expectedPrice = 9.50;
 
         // Act

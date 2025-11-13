@@ -2,6 +2,7 @@ package com.pluralsight.raysgoldenswirl.items;
 
 import com.pluralsight.raysgoldenswirl.toppings.Topping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FrozenYogurt extends Item {
@@ -9,11 +10,19 @@ public class FrozenYogurt extends Item {
     private List<Topping> toppings;
     private boolean isRolled;
 
-    public FrozenYogurt(String type, String size, List<Topping> toppings, boolean isRolled) {
+    public FrozenYogurt(String type, String size, boolean isRolled) {
         super(type);
         this.size = size;
-        this.toppings = toppings;
+        this.toppings = new ArrayList<>();
         this.isRolled = isRolled;
+    }
+
+    public List<Topping> getToppings() {
+        return toppings;
+    }
+
+    public boolean isRolled() {
+        return isRolled;
     }
 
     public void addTopping(Topping topping) {
