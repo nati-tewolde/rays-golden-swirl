@@ -5,6 +5,12 @@ public class Fruit extends PremiumTopping {
         super(type);
     }
 
+    /**
+     * Calculates the total price of the topping including extra toppings
+     *
+     * @param size Size of the overarching item
+     * @return Sum of the base price and any extra toppings
+     */
     @Override
     public double calculatePrice(String size) {
         double base = lookupBasePrice(size);
@@ -20,6 +26,12 @@ public class Fruit extends PremiumTopping {
         return total;
     }
 
+    /**
+     * Stores the fixed base prices of the topping depending on size
+     *
+     * @param size Size of the overarching item
+     * @return Base price
+     */
     public double lookupBasePrice(String size) {
         if (size.trim().equalsIgnoreCase("l")) {
             return 3.00;
@@ -30,6 +42,12 @@ public class Fruit extends PremiumTopping {
         }
     }
 
+    /**
+     * Stores the fixed extra prices of the topping depending on size
+     *
+     * @param size Size of the overarching item
+     * @return Extra price
+     */
     public double lookupExtraPrice(String size) {
         if (size.trim().equalsIgnoreCase("l")) {
             return 1.50;

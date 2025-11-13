@@ -14,4 +14,6 @@ public abstract class Item {
     public abstract double calculatePrice();
 
     public abstract void displayDetails();
+
+    public abstract String getReceiptDetails();
 }

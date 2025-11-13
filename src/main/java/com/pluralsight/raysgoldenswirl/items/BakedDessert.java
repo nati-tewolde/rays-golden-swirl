@@ -14,4 +14,9 @@ public class BakedDessert extends Item {
     public void displayDetails() {
         System.out.printf("%s $%10.2f", getType(), calculatePrice());
     }
+
+    @Override
+    public String getReceiptDetails() {
+        return String.format("%s $%10.2f", getType(), calculatePrice());
+    }
 }

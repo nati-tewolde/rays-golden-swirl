@@ -30,6 +30,11 @@ public class FrozenYogurt extends Item {
         toppings.add(topping);
     }
 
+    /**
+     * Calculates the total cost of the item and its respective toppings
+     *
+     * @return Sum of the item price and all its toppings
+     */
     @Override
     public double calculatePrice() {
         double basePrice = 0;
@@ -58,18 +63,26 @@ public class FrozenYogurt extends Item {
 
     @Override
     public void displayDetails() {
-        String specialOption;
-
-        if (isRolled) {
-            specialOption = "Rolled";
-        } else {
-            specialOption = "Regular";
-        }
+        String specialOption = isRolled ? "Rolled" : "Regular";
 
         System.out.printf("%s %s (%s) $%10.2f", specialOption, getType(), size.toUpperCase(), calculatePrice());
 
         for (Topping topping : toppings) {
             System.out.printf("%n - %s $%10.2f", topping.getType(), topping.calculatePrice(size));
         }
+    }
+
+    @Override
+    public String getReceiptDetails() {
+        StringBuilder details = new StringBuilder();
+        String specialOption = isRolled ? "Rolled" : "Regular";
+        details.append(String.format("%s %s (%s) $%.2f\n",
+                specialOption, getType(), size.toUpperCase(), calculatePrice()));
+
+        for (Topping topping : toppings) {
+            details.append(String.format("   - %s $%.2f\n",
+                    topping.getType(), topping.calculatePrice(size)));
+        }
+        return details.toString();
     }
 }

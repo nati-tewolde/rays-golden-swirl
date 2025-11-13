@@ -7,7 +7,11 @@ public class Drink extends Item {
         super(type);
         this.size = size;
     }
-
+    /**
+     * Calculates the price of the item depending on its size
+     *
+     * @return Base price
+     */
     @Override
     public double calculatePrice() {
         double basePrice = 0;
@@ -28,5 +32,10 @@ public class Drink extends Item {
     @Override
     public void displayDetails() {
         System.out.printf("%s (%s) $%10.2f", getType(), size.toUpperCase(), calculatePrice());
+    }
+
+    @Override
+    public String getReceiptDetails() {
+        return String.format("%s (%s) $%10.2f", getType(), size.toUpperCase(), calculatePrice());
     }
 }

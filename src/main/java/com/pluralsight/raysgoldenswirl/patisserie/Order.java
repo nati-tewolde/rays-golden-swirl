@@ -19,6 +19,10 @@ public class Order {
         this.orderDate = LocalDateTime.now();
     }
 
+    public String getCustomerName() {
+        return customerName;
+    }
+
     public String getOrderNumber() {
         Random random = new Random();
         int orderNumber = random.nextInt(1000);
