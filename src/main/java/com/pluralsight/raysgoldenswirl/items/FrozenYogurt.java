@@ -21,8 +21,10 @@ public class FrozenYogurt extends Item {
         toppings.add(topping);
     }
 
+    @Override
     public double calculatePrice() {
         double basePrice = 0;
+
         if (size.trim().equalsIgnoreCase("s")) {
             basePrice = 3.50;
         }
@@ -45,8 +47,10 @@ public class FrozenYogurt extends Item {
         return basePrice + toppingsTotal;
     }
 
+    @Override
     public void displayDetails() {
         String specialOption;
+
         if (isRolled) {
             specialOption = "Rolled";
         } else {
