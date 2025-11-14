@@ -7,46 +7,30 @@ import static org.junit.jupiter.api.Assertions.*;
 class FruitTest {
 
     @Test
-    public void calculatePrice_SmallSizeWithOneTopping_ReturnBasePrice() {
+    public void calculatePrice_LargeSize_ReturnsCorrectBasePrice() {
         // Arrange
-        Fruit strawberry = new Fruit("strawberry");
-        String size = "S";
-        double expectedPrice = 1.00;
-
-        // Act
-        double actualPrice = strawberry.calculatePrice(size);
-
-        // Assert
-        assertEquals(expectedPrice, actualPrice, 0.001); // maximum difference allowed for assertion to pass
-    }
-
-    @Test
-    public void calculatePrice_MediumSizeWithTwoServings_ReturnsBasePlusExtra() {
-        // Arrange
-        Fruit kiwi = new Fruit("kiwi");
-        kiwi.increaseQuantity();
-        String size = "M";
+        Fruit kiwi = new Fruit("Kiwi");
+        String size = "L";
         double expectedPrice = 3.00;
 
         // Act
-        double actualPrice = kiwi.calculatePrice(size);
+        double actual = kiwi.getPrice(size);
 
         // Assert
-        assertEquals(expectedPrice, actualPrice, 0.001);
+        assertEquals(expectedPrice, actual, 0.001);
     }
 
     @Test
-    public void increaseQuantity_CalledOnce_QuantityIncrementedByOne() {
+    public void getExtraPrice_MediumSize_ReturnsCorrectExtraPrice() {
         // Arrange
-        Fruit pineapple = new Fruit("pineapple");
-        int expectedQuantity = 2;
+        Fruit mango = new Fruit("Mango");
+        String size = "M";
+        double expectedExtra = 1.00;
 
         // Act
-        pineapple.increaseQuantity();
+        double actualExtra = mango.getExtraPrice(size);
 
         // Assert
-        int actualQuantity = pineapple.getQuantity();
-        assertEquals(expectedQuantity, actualQuantity);
+        assertEquals(expectedExtra, actualExtra, 0.001);
     }
-
 }

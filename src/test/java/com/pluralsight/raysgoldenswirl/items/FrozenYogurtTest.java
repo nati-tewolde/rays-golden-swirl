@@ -3,47 +3,63 @@ package com.pluralsight.raysgoldenswirl.items;
 import com.pluralsight.raysgoldenswirl.toppings.*;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class FrozenYogurtTest {
 
     @Test
-    public void addTopping_AddsMultipleToppings_AllAppearInList() {
+    public void addTopping_AddExtraQuantity_QuantityAccumulatesCorrectly() {
         // Arrange
-        FrozenYogurt testFroyo = new FrozenYogurt("Test Froyo", "L", false);
-        Topping fruit = new Fruit("Strawberry");
-        Topping candy = new Candy("Sprinkles");
-        int expectedCount = 2;
+        FrozenYogurt froyo = new FrozenYogurt("Test Froyo", "M", false);
+        Topping nuts = new Nuts("Pecan");
 
         // Act
-        testFroyo.addTopping(fruit);
-        testFroyo.addTopping(candy);
+        froyo.addTopping(nuts, 1);
+        froyo.addTopping(nuts, 2);
+
+        int actualQuantity = froyo.getToppings().get(nuts);
+        int expectedQuantity = 3;
 
         // Assert
-        int actualCount = testFroyo.getToppings().size();
-        assertEquals(expectedCount, actualCount);
+        assertEquals(expectedQuantity, actualQuantity);
     }
 
     @Test
-    public void calculatePrice_MediumSizeWithNutsFruitsAndSauce_AddsAllPrices() {
+    public void calculatePrice_MediumSizeWithFruitNutsAndSauce_ReturnsCorrectTotal() {
         // Arrange
-        FrozenYogurt testFroyo = new FrozenYogurt("Test Froyo", "M", false);
-        Nuts nuts = new Nuts("Pecans");
-        Fruit fruit = new Fruit("Pineapple");
-        Sauce sauce = new Sauce("Caramel");
+        FrozenYogurt froyo = new FrozenYogurt("Test Froyo", "M", false);
 
-        testFroyo.addTopping(nuts);
-        testFroyo.addTopping(fruit);
-        testFroyo.addTopping(sauce);
-        double expectedPrice = 9.50;
+        Fruit fruit = new Fruit("Mango");
+        Nuts nuts = new Nuts("Walnut");
+        Sauce caramel = new Sauce("Caramel");
+
+        froyo.addTopping(fruit, 1);
+        froyo.addTopping(nuts, 1);
+        froyo.addTopping(caramel, 1);
+
+        double expectedTotal = 9.5;
 
         // Act
-        double actualPrice = testFroyo.calculatePrice();
+        double actualTotal = froyo.calculatePrice();
 
         // Assert
-        assertEquals(expectedPrice, actualPrice, 0.001);
+        assertEquals(expectedTotal, actualTotal, 0.001);
+    }
+
+    @Test
+    public void addTopping_ExceedsMaxToppings_ReturnsFalse() {
+        // Arrange
+        FrozenYogurt froyo = new FrozenYogurt("Test Froyo", "S", false);
+        Topping candy = new Candy("Oreos");
+
+        // Act
+        boolean added1 = froyo.addTopping(candy, 1);
+        boolean added2 = froyo.addTopping(candy, 2);
+        boolean added3 = froyo.addTopping(candy, 1);
+
+        // Assert
+        assertTrue(added1);
+        assertTrue(added2);
+        assertFalse(added3);
     }
 }
