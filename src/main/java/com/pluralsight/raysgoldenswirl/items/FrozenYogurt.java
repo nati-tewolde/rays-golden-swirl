@@ -13,7 +13,7 @@ public class FrozenYogurt extends Item {
     private int toppingsCount;
     private int maxToppings;
 
-    public FrozenYogurt(String type, String size, boolean isRolled) {
+    public FrozenYogurt(String type, String size) {
         super(type);
         this.size = size;
         this.toppings = new HashMap<>();
@@ -27,11 +27,15 @@ public class FrozenYogurt extends Item {
             this.maxToppings = 3;
         }
 
-        this.isRolled = isRolled;
+        this.isRolled = false;
     }
 
-    public boolean isRolled() {
-        return isRolled;
+    public Map<Topping, Integer> getToppings() {
+        return toppings;
+    }
+
+    public void setRolled(boolean rolled) {
+        isRolled = rolled;
     }
 
     public boolean addTopping(Topping topping, int quantity) {
@@ -67,7 +71,6 @@ public class FrozenYogurt extends Item {
         }
     }
 
-    // Refactor to replace totals in details methods
     public double calculateToppingTotal(Topping topping, int quantity) {
         double unitPrice = topping.getPrice(size);
         double extraPrice;

@@ -47,27 +47,24 @@ public class Order {
         items.add(item);
     }
 
-    public double calculateTotal(){
+    public double calculateTotal() {
         return items.stream()
                 .mapToDouble(Item::calculatePrice)
                 .sum();
     }
 
-    public void displayOrder(){
+    public void displayOrder() {
         System.out.println("ORDER #" + getOrderNumber());
         System.out.println("Customer: " + customerName);
         System.out.println("Date: " + getOrderDateForDisplay());
 
-        if (items.isEmpty()) {
-            System.out.println("You must purchase a baked dessert or drink if your order is empty.");
-        } else {
-            int itemNumber = 1;
-            for (Item item : items) {
-                System.out.println(itemNumber + ". ");
-                item.displayDetails();
-                itemNumber += 1;
-            }
+        int itemNumber = 1;
+        for (Item item : items) {
+            System.out.println(itemNumber + ". ");
+            item.displayDetails();
+            itemNumber += 1;
         }
+
         System.out.printf("Total: $%10.2f", calculateTotal());
     }
 }

@@ -12,7 +12,7 @@ class OrderTest {
     public void addItem_AddsItemToOrder_ListSizeIncreases() {
         // Arrange
         Order order = new Order("Raymond");
-        Item froyo = new FrozenYogurt("Froyo", "M", false);
+        Item froyo = new FrozenYogurt("Froyo", "M");
 
         int expectedSize = 1;
 
@@ -29,8 +29,8 @@ class OrderTest {
         // Arrange
         Order order = new Order("Raymond");
 
-        FrozenYogurt froyo1 = new FrozenYogurt("Froyo", "S", false); // base: 3.50
-        FrozenYogurt froyo2 = new FrozenYogurt("Froyo", "M", false); // base: 6.00
+        FrozenYogurt froyo1 = new FrozenYogurt("Froyo", "S");
+        FrozenYogurt froyo2 = new FrozenYogurt("Froyo", "M");
 
         order.addItem(froyo1);
         order.addItem(froyo2);

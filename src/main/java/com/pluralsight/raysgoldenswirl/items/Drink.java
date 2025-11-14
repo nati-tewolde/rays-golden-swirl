@@ -7,11 +7,7 @@ public class Drink extends Item {
         super(type);
         this.size = size;
     }
-    /**
-     * Calculates the price of the item depending on its size
-     *
-     * @return Base price
-     */
+
     @Override
     public double calculatePrice() {
         double basePrice = 0;

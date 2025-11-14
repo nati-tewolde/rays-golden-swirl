@@ -10,7 +10,7 @@ class FrozenYogurtTest {
     @Test
     public void addTopping_AddExtraQuantity_QuantityAccumulatesCorrectly() {
         // Arrange
-        FrozenYogurt froyo = new FrozenYogurt("Test Froyo", "M", false);
+        FrozenYogurt froyo = new FrozenYogurt("Test Froyo", "M");
         Topping nuts = new Nuts("Pecan");
 
         // Act
@@ -27,7 +27,7 @@ class FrozenYogurtTest {
     @Test
     public void calculatePrice_MediumSizeWithFruitNutsAndSauce_ReturnsCorrectTotal() {
         // Arrange
-        FrozenYogurt froyo = new FrozenYogurt("Test Froyo", "M", false);
+        FrozenYogurt froyo = new FrozenYogurt("Test Froyo", "M");
 
         Fruit fruit = new Fruit("Mango");
         Nuts nuts = new Nuts("Walnut");
@@ -49,7 +49,7 @@ class FrozenYogurtTest {
     @Test
     public void addTopping_ExceedsMaxToppings_ReturnsFalse() {
         // Arrange
-        FrozenYogurt froyo = new FrozenYogurt("Test Froyo", "S", false);
+        FrozenYogurt froyo = new FrozenYogurt("Test Froyo", "S");
         Topping candy = new Candy("Oreos");
 
         // Act
