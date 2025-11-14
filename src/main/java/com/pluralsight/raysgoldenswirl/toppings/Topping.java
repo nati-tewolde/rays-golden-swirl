@@ -2,24 +2,29 @@ package com.pluralsight.raysgoldenswirl.toppings;
 
 public abstract class Topping {
     private String type;
-    private int quantity;
 
     public Topping(String type) {
         this.type = type;
-        this.quantity = 1;
     }
 
     public String getType() {
         return type;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public abstract double getPrice(String size);
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+
+        Topping other = (Topping) obj;
+        return type.equalsIgnoreCase(other.type);
     }
 
-    public void increaseQuantity() {
-        quantity += 1;
+    @Override
+    public int hashCode() {
+        return type.toLowerCase().hashCode();
     }
-
-    public abstract double calculatePrice(String size);
 }

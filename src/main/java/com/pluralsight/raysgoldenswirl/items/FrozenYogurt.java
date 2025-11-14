@@ -1,74 +1,102 @@
 package com.pluralsight.raysgoldenswirl.items;
 
+import com.pluralsight.raysgoldenswirl.toppings.PremiumTopping;
 import com.pluralsight.raysgoldenswirl.toppings.Topping;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FrozenYogurt extends Item {
     private String size;
-    private List<Topping> toppings;
+    private Map<Topping, Integer> toppings;
     private boolean isRolled;
+    private int toppingsCount;
+    private int maxToppings;
 
     public FrozenYogurt(String type, String size, boolean isRolled) {
         super(type);
         this.size = size;
-        this.toppings = new ArrayList<>();
-        this.isRolled = isRolled;
-    }
+        this.toppings = new HashMap<>();
+        this.toppingsCount = 0;
 
-    public List<Topping> getToppings() {
-        return toppings;
+        if (size.trim().equalsIgnoreCase("l")) {
+            this.maxToppings = 7;
+        } else if (size.trim().equalsIgnoreCase("m")) {
+            this.maxToppings = 5;
+        } else {
+            this.maxToppings = 3;
+        }
+
+        this.isRolled = isRolled;
     }
 
     public boolean isRolled() {
         return isRolled;
     }
 
-    public void addTopping(Topping topping) {
-        // Limit extra topping maximum
-        toppings.add(topping);
+    public boolean addTopping(Topping topping, int quantity) {
+        if ((toppingsCount + quantity) > maxToppings) {
+            return false;
+        }
+
+        int currentQuantity = toppings.getOrDefault(topping, 0);
+        toppings.put(topping, currentQuantity + quantity);
+        toppingsCount += quantity;
+
+        return true;
     }
 
-    /**
-     * Calculates the total cost of the item and its respective toppings
-     *
-     * @return Sum of the item price and all its toppings
-     */
     @Override
     public double calculatePrice() {
-        double basePrice = 0;
+        double total = lookUpFrozenYogurtBasePrice(size);
 
-        if (size.trim().equalsIgnoreCase("s")) {
-            basePrice = 3.50;
+        for (Map.Entry<Topping, Integer> entry : toppings.entrySet()) {
+            total += calculateToppingTotal(entry.getKey(), entry.getValue());
         }
-        if (size.trim().equalsIgnoreCase("m")) {
-            basePrice = 6.00;
-        }
+
+        return total;
+    }
+    
+    public double lookUpFrozenYogurtBasePrice(String size) {
         if (size.trim().equalsIgnoreCase("l")) {
-            basePrice = 8.50;
+            return 8.50;
+        } else if (size.trim().equalsIgnoreCase("m")) {
+            return 6.00;
+        } else {
+            return 3.50;
+        }
+    }
+
+    // Refactor to replace totals in details methods
+    public double calculateToppingTotal(Topping topping, int quantity) {
+        double unitPrice = topping.getPrice(size);
+        double extraPrice;
+
+        if (topping instanceof PremiumTopping) {
+            extraPrice = ((PremiumTopping) topping).getExtraPrice(size);
+        } else {
+            extraPrice = unitPrice;
         }
 
-        /*double toppingsTotal = 0;
-        for (Topping topping : toppings) {
-            toppingsTotal += topping.calculatePrice(size);
-        }*/
+        if (quantity == 1) {
+            return unitPrice;
+        }
 
-        double toppingsTotal = toppings.stream()
-                .mapToDouble(toppings -> toppings.calculatePrice(size))
-                .sum();
-
-        return basePrice + toppingsTotal;
+        return unitPrice + (quantity - 1) * extraPrice;
     }
 
     @Override
     public void displayDetails() {
         String specialOption = isRolled ? "Rolled" : "Regular";
 
-        System.out.printf("%s %s (%s) $%10.2f", specialOption, getType(), size.toUpperCase(), calculatePrice());
+        System.out.printf("%s %s (%s) $%10.2f", specialOption, getType(),
+                size.toUpperCase(), calculatePrice());
 
-        for (Topping topping : toppings) {
-            System.out.printf("%n - %s $%10.2f", topping.getType(), topping.calculatePrice(size));
+        for (Map.Entry<Topping, Integer> entry : toppings.entrySet()) {
+            double toppingCost = calculateToppingTotal(entry.getKey(), entry.getValue());
+
+            System.out.printf("%n - %s (x%d) $%10.2f", entry.getKey().getType(),
+                    entry.getValue(), toppingCost);
         }
     }
 
@@ -79,9 +107,11 @@ public class FrozenYogurt extends Item {
         details.append(String.format("%s %s (%s) $%.2f\n",
                 specialOption, getType(), size.toUpperCase(), calculatePrice()));
 
-        for (Topping topping : toppings) {
-            details.append(String.format("   - %s $%.2f\n",
-                    topping.getType(), topping.calculatePrice(size)));
+        for (Map.Entry<Topping, Integer> entry : toppings.entrySet()) {
+            double toppingCost = calculateToppingTotal(entry.getKey(), entry.getValue());
+
+            details.append(String.format("   - %s (x%d) $%10.2f\n",
+                    entry.getKey().getType(), entry.getValue(), toppingCost));
         }
         return details.toString();
     }
