@@ -1,22 +1,38 @@
-# Financial Tracker: Accounting Ledger Application
+# Ray's Golden Swirl: POS Application
 
 ## Description 
 
-Financial Tracker is a Java-based command-line application that assists users in tracking their financial transactions for personal & business use.
-It supports adding new transactions, displaying them in ledgers, and filtering through multiple types of financial reports.
+Ray’s Golden Swirl is a Java-based command-line application that allows customers to build and customize dessert orders. 
+Users can create frozen yogurt bowls, drinks, and baked desserts by selecting sizes, flavors, and toppings—including premium options and extras. 
+The program supports adding multiple items, reviewing an order, and generating a formatted receipt file at checkout.
 
 ## UML Class Diagram
-![Class Diagram](./uml-class-diagram.pdf)
+![Class Diagram](./uml-class-diagram.jpeg)
 
 ## User Stories
 <details>
   <summary>Click to expand</summary>
 
-This content is hidden by default.
-You can include **Markdown** formatting here,
-just ensure there is a blank line after the `</summary>` tag.
+- As a shop owner, I want to store all available toppings, so that customers can select specific toppings and prices can be calculated consistently by size
+- As a customer, I want to choose candy-style toppings, so that I can add sweetness and texture to my dessert
+- As a customer, I want to add sauces, so that I can customize flavor without affecting texture
+- As a customer, I want to add specialty toppings, so that I can experiment with unfamiliar condiments
+- As a shop owner, I want to store all available premium toppings, so that customers can select specific premium toppings and prices can be calculated consistently by size
+- As a customer, I want to add fresh fruit options, so that my dessert has healthier choices
+- As a customer, I want to add nut-based toppings, so that I can enjoy premium crunchy options
+- As a shop owner, I want to store all available items, so that customers can browse and select the items they want
+- As a customer, I want to build a frozen yogurt with size and toppings, so that I can personalize my dessert
+- As a customer, I want to order baked desserts, so that I can choose from non-frozen menu items
+- As a customer, I want to order drinks to pair with desserts, so that my order feels complete
+- As a customer, I want my order tracked with my list of items, so that my receipt is personalized and I can review my order
+- As a customer, I want to view and edit my order contents, so that I can fix mistakes
+- As a shop owner, I want the sum total of all items in an order, so that customer's final bill is accurate
+- As a shop owner, I want each receipt stored in the receipts folder, so that sales records are retained
+- As a shop owner, I want to open the main menu, so that customers can start placing orders
+- As a customer, I want to see all available items, so that I can decide what to order
+- As a customer, I want to interactively add items and toppings, so that I can build my order step by step
+- As a customer, I want to confirm and complete my order, so that my transaction is finalized
 </details>
-
 
 ## Setup
 
@@ -44,13 +60,13 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 ## Demo
 
-![Application Demo](./capstone-demo.gif)
+![Application Demo](./capstone2-demo.gif)
 
 ## Future Work
 
-- Exporting reports: save filtered or custom reports as a new file.
-- Ledger Summary: show total deposits, total payments, and current balance.
-- Modify transactions: edit or remove transactions without modifying the file directly.
+- Signature Items: introduce pre-defined templates for specialty FroYo items, which customers can select and customize. 
+- Order Editing: modify or remove items before checkout. 
+- Favorites System: save a customer’s favorite FroYo topping combination for quick re-ordering.
 
 ## Resources
 

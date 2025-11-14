@@ -23,7 +23,6 @@ public class UserInterface {
         this.bakedDessertOptions = new ArrayList<>(Arrays.asList("Brownie", "Baklava", "Cookie"));
     }
 
-    // Refactor to utility class
     private void initializeToppingData() {
         toppingOptions.put("Fruit", Arrays.asList("Blueberry", "Banana", "Mango", "Kiwi", "Goji Berries"));
         toppingOptions.put("Nuts", Arrays.asList("Walnut", "Pecan", "Almond", "Hazelnut"));
@@ -42,7 +41,10 @@ public class UserInterface {
 
     public void startProgram(Scanner scanner) {
         while (true) {
-            System.out.println("Welcome to Ray's Golden Swirl!");
+            System.out.println("""
+                    ╭──────────────────────────────────────────────╮
+                    │              RAY'S GOLDEN SWIRL              │
+                    ╰──────────────────────────────────────────────╯""");
             System.out.println("1) New Order");
             System.out.println("0) Exit");
             System.out.print("Enter your selection: ");
