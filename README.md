@@ -5,18 +5,18 @@
 Financial Tracker is a Java-based command-line application that assists users in tracking their financial transactions for personal & business use.
 It supports adding new transactions, displaying them in ledgers, and filtering through multiple types of financial reports.
 
-## User Stories
+## UML Class Diagram
+![Class Diagram](./uml-class-diagram.pdf)
 
-- As a user, I want my transactions to be saved & displayed accurately, so that I can view my deposits and payments later.
-- As a user, I want my saved transactions to load as I start the application, so that I can view my current/previous payments & deposits.
-- As a user, I want to record a new deposit, so that my transaction ledger reflects the money I've received.
-- As a user, I want to record a new (debit) payment, so that my transaction ledger includes the money I've spent.
-- As a user, I want to view all my transactions in one place, so that I can review my complete financial history.
-- As a user, I want to exclusively view my deposits, so that I can review all the money I've received.
-- As a user, I want to view only my payments, so that I can track all the money I've spent.
-- As a user, I want to view transactions within a specific date range, so that I can review my financial activity during that period.
-- As a user, I want to view all transactions based on a specific vendor, so that I can track my spending/income in relation to that vendor.
-- As a user, I want to search for transactions using a combination of filters, so that I can easily find specific transactions without browsing through my entire ledger.
+## User Stories
+<details>
+  <summary>Click to expand</summary>
+
+This content is hidden by default.
+You can include **Markdown** formatting here,
+just ensure there is a blank line after the `</summary>` tag.
+</details>
+
 
 ## Setup
 
@@ -40,10 +40,11 @@ Follow these steps to get your application running within IntelliJ IDEA:
 ## Technologies Used
 
 - Java: Amazon Corretto 17.0.16
+- JUnit 5 (Jupiter)
 
 ## Demo
 
-![Application Screenshot](./capstone-demo.gif)
+![Application Demo](./capstone-demo.gif)
 
 ## Future Work
 
@@ -55,6 +56,9 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 - [Potato Sensei - OpenAI: ChatGpt 5 LLM](https://chatgpt.com/g/g-681d378b0c90819197b16e49abe384ec-potato-sensei)
 - [Class Assert - JUnit](https://junit.org/junit4/javadoc/latest/org/junit/Assert.html)
+- [Stream (Java Platform SE 8) - Oracle Documentation](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html)
+- [Java HashMap entrySet() - Retrieve Entry Set](https://docs.vultr.com/java/standard-library/java/util/HashMap/entrySet)
+- [Java equals() and hashCode() Contracts](https://www.baeldung.com/java-equals-hashcode-contracts)
 
 ## Team Members
 
@@ -62,4 +66,4 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 ## Thanks
 
-- Thank you to both *potato senseis* for your continuous support and guidance!
+- Thank you to both *potato* senseis who were the inspiration behind this *potato* themed application!

@@ -1,5 +1,7 @@
 package com.pluralsight.raysgoldenswirl.patisserie;
 
+import com.pluralsight.raysgoldenswirl.items.BakedDessert;
+import com.pluralsight.raysgoldenswirl.items.Drink;
 import com.pluralsight.raysgoldenswirl.items.FrozenYogurt;
 import com.pluralsight.raysgoldenswirl.toppings.*;
 
@@ -82,7 +84,7 @@ public class UserInterface {
         ReceiptFileManager receiptManager = new ReceiptFileManager();
 
         int input = -1;
-        while (input != 3) {
+        while (input != 0) {
             System.out.println("\nOrder Menu");
             System.out.println("1) Add FroYo");
             System.out.println("2) Add Drink");
@@ -102,10 +104,13 @@ public class UserInterface {
             String flavor;
             switch (input) {
                 case 1 -> buildFrozenYogurt(scanner);
-                case 2 ->
-                case 3 ->
-                case 4 ->
-                case 0 ->
+                case 2 -> buildDrink(scanner);
+                case 3 -> buildBakedDessert(scanner);
+                case 4 -> checkout(scanner, receiptManager, order);
+                case 0 -> {
+                    System.out.println("Order Cancelled");
+                    return;
+                }
                 default -> System.out.println("\nInvalid selection: please enter a number 0 - 4");
             }
         }
@@ -163,13 +168,12 @@ public class UserInterface {
             }
             System.out.print("Enter your selection: ");
 
-            int categoryChoice = -1;
             if (!scanner.hasNextInt()) {
                 System.out.println("\nInvalid input.");
                 scanner.nextLine();
                 continue;
             }
-            categoryChoice = scanner.nextInt();
+            int categoryChoice = scanner.nextInt();
             scanner.nextLine();
 
             if (categoryChoice < 1 || categoryChoice > categories.size()) {
@@ -211,7 +215,9 @@ public class UserInterface {
                 String extraInput = scanner.nextLine().trim();
 
                 if (extraInput.equalsIgnoreCase("Y")) {
-                    quantity += 1;
+                    if (froyo.getToppingsCount() + quantity + 1 <= froyo.getMaxToppings()) {
+                        quantity += 1;
+                    }
                 } else if (extraInput.equalsIgnoreCase("N")) {
                     askForExtra = false;
                 } else {
@@ -221,7 +227,7 @@ public class UserInterface {
 
             boolean success = froyo.addTopping(toppingObject, quantity);
             if (!success) {
-                System.out.println("You've reach the maximum toppings.");
+                System.out.println("You've reached the maximum toppings.");
                 break;
             }
 
@@ -254,5 +260,115 @@ public class UserInterface {
         }
 
         order.addItem(froyo);
+        System.out.println("FroYo added to order!");
+    }
+
+    public void buildDrink(Scanner scanner) {
+        System.out.println("\nSelect a drink:");
+
+        for (int i = 0; i < drinkOptions.size(); i++) {
+            System.out.println((i + 1) + ") " + drinkOptions.get(i));
+        }
+
+        int drinkChoice = -1;
+        while (drinkChoice < 1 || drinkChoice > drinkOptions.size()) {
+            if (!scanner.hasNextInt()) {
+                System.out.println("\nInvalid input.");
+                scanner.nextLine();
+                continue;
+            }
+            drinkChoice = scanner.nextInt();
+            scanner.nextLine();
+
+            if (drinkChoice < 1 || drinkChoice > drinkOptions.size()) {
+                System.out.println("\nInvalid selection: please enter a number 1 - " + drinkOptions.size());
+            }
+        }
+
+        String drinkType = drinkOptions.get(drinkChoice - 1);
+
+        String size;
+        while (true) {
+            System.out.print("\nChoose a size (S/M/L): ");
+            size = scanner.nextLine().trim().toUpperCase();
+            if (!size.equalsIgnoreCase("s") && !size.equalsIgnoreCase("m")
+                    && !size.equalsIgnoreCase("l")) {
+                System.out.println("\nInvalid input.");
+                continue;
+            }
+            break;
+        }
+
+        Drink drink = new Drink(drinkType, size);
+        order.addItem(drink);
+        System.out.println(drinkType + " added to order!");
+    }
+
+    public void buildBakedDessert(Scanner scanner) {
+        System.out.println("\nSelect a baked dessert: ");
+
+        for (int i = 0; i < bakedDessertOptions.size(); i++) {
+            System.out.println((i + 1) + ") " + bakedDessertOptions.get(i));
+        }
+
+        int dessertChoice = -1;
+        while (dessertChoice < 1 || dessertChoice > bakedDessertOptions.size()) {
+            if (!scanner.hasNextInt()) {
+                System.out.println("\nInvalid input.");
+                scanner.nextLine();
+                continue;
+            }
+            dessertChoice = scanner.nextInt();
+            scanner.nextLine();
+
+            if (dessertChoice < 1 || dessertChoice > bakedDessertOptions.size()) {
+                System.out.println("\nInvalid selection: please enter a number 1 - " + bakedDessertOptions.size());
+            }
+        }
+
+        String dessertType = bakedDessertOptions.get(dessertChoice - 1);
+        BakedDessert bakedDessert = new BakedDessert(dessertType);
+
+        order.addItem(bakedDessert);
+        System.out.println(dessertType + " added to order!");
+    }
+
+    public void checkout(Scanner scanner, ReceiptFileManager receiptManager, Order order) {
+        System.out.println("\n---------------- CHECKOUT ----------------");
+
+        if (order.getItems().isEmpty()) {
+            System.out.println("Your order is empty.");
+            return;
+        }
+
+        order.displayOrder();
+
+        System.out.println("\n1) Confirm and Save Receipt");
+        System.out.println("2) Cancel and Return to Order Menu");
+        System.out.print("Enter your selection: ");
+
+        int choice = -1;
+        while (choice < 1 || choice > 2) {
+            if (!scanner.hasNextInt()) {
+                System.out.println("\nInvalid input.");
+                scanner.nextLine();
+                continue;
+            }
+            choice = scanner.nextInt();
+            scanner.nextLine();
+
+            if (choice < 1 || choice > 2) {
+                System.out.println("\nInvalid selection: please enter 1 or 2");
+            }
+        }
+
+        if (choice == 1) {
+            receiptManager.saveReceipt(order);
+            System.out.println("Receipt saved as " + receiptManager.getReceiptFileName(order));
+        } else {
+            System.out.println("Checkout cancelled.");
+        }
     }
 }
+
+

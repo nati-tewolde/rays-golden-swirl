@@ -38,6 +38,22 @@ public class FrozenYogurt extends Item {
         isRolled = rolled;
     }
 
+    public int getToppingsCount() {
+        return toppingsCount;
+    }
+
+    public void setToppingsCount(int toppingsCount) {
+        this.toppingsCount = toppingsCount;
+    }
+
+    public int getMaxToppings() {
+        return maxToppings;
+    }
+
+    public void setMaxToppings(int maxToppings) {
+        this.maxToppings = maxToppings;
+    }
+
     public boolean addTopping(Topping topping, int quantity) {
         if ((toppingsCount + quantity) > maxToppings) {
             return false;
