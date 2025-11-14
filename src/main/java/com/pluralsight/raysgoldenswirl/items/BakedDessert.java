@@ -12,11 +12,11 @@ public class BakedDessert extends Item {
 
     @Override
     public void displayDetails() {
-        System.out.printf("%s $%10.2f", getType(), calculatePrice());
+        System.out.printf("%s %10s", getType(), String.format("$%.2f", calculatePrice()));
     }
 
     @Override
     public String getReceiptDetails() {
-        return String.format("%s $%10.2f", getType(), calculatePrice());
+        return String.format("%s %10s", getType(), String.format("$%.2f", calculatePrice()));
     }
 }

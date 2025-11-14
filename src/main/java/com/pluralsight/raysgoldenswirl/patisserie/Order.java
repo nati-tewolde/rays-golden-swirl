@@ -60,11 +60,11 @@ public class Order {
 
         int itemNumber = 1;
         for (Item item : items) {
-            System.out.println(itemNumber + ". ");
+            System.out.print("\n" + itemNumber + ". ");
             item.displayDetails();
             itemNumber += 1;
         }
 
-        System.out.printf("Total: $%10.2f", calculateTotal());
+        System.out.printf("%n%nTotal: %10s%n", String.format("$%.2f", calculateTotal()));
     }
 }

@@ -161,7 +161,7 @@ public class UserInterface {
 
         boolean addMoreToppings = true;
         while (addMoreToppings) {
-            System.out.println("\nTopping Categories:");
+            System.out.println("\nToppings:");
             List<String> categories = new ArrayList<>(toppingOptions.keySet());
             for (int i = 0; i < categories.size(); i++) {
                 System.out.println((i + 1) + ") " + categories.get(i));
@@ -260,7 +260,7 @@ public class UserInterface {
         }
 
         order.addItem(froyo);
-        System.out.println("FroYo added to order!");
+        System.out.println("\nFroYo added to order!");
     }
 
     public void buildDrink(Scanner scanner) {
@@ -301,7 +301,7 @@ public class UserInterface {
 
         Drink drink = new Drink(drinkType, size);
         order.addItem(drink);
-        System.out.println(drinkType + " added to order!");
+        System.out.println("\n" + drinkType + " added to order!");
     }
 
     public void buildBakedDessert(Scanner scanner) {
@@ -330,7 +330,7 @@ public class UserInterface {
         BakedDessert bakedDessert = new BakedDessert(dessertType);
 
         order.addItem(bakedDessert);
-        System.out.println(dessertType + " added to order!");
+        System.out.println("\n" + dessertType + " added to order!");
     }
 
     public void checkout(Scanner scanner, ReceiptFileManager receiptManager, Order order) {
@@ -364,7 +364,6 @@ public class UserInterface {
 
         if (choice == 1) {
             receiptManager.saveReceipt(order);
-            System.out.println("Receipt saved as " + receiptManager.getReceiptFileName(order));
         } else {
             System.out.println("Checkout cancelled.");
         }

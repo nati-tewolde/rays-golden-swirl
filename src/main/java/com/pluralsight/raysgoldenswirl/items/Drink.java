@@ -27,11 +27,11 @@ public class Drink extends Item {
 
     @Override
     public void displayDetails() {
-        System.out.printf("%s (%s) $%10.2f", getType(), size.toUpperCase(), calculatePrice());
+        System.out.printf("%s (%s) %10s", getType(), size.toUpperCase(), String.format("$%.2f", calculatePrice()));
     }
 
     @Override
     public String getReceiptDetails() {
-        return String.format("%s (%s) $%10.2f", getType(), size.toUpperCase(), calculatePrice());
+        return String.format("%s (%s) %10s", getType(), size.toUpperCase(), String.format("$%.2f", calculatePrice()));
     }
 }

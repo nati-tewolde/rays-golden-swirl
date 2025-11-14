@@ -123,14 +123,14 @@ public class FrozenYogurt extends Item {
     public String getReceiptDetails() {
         StringBuilder details = new StringBuilder();
         String specialOption = isRolled ? "Rolled" : "Regular";
-        details.append(String.format("%s %s (%s) $%.2f\n",
-                specialOption, getType(), size.toUpperCase(), calculatePrice()));
+        details.append(String.format("%s %s (%s) %10s\n",
+                specialOption, getType(), size.toUpperCase(), String.format("$%.2f", calculatePrice())));
 
         for (Map.Entry<Topping, Integer> entry : toppings.entrySet()) {
             double toppingCost = calculateToppingTotal(entry.getKey(), entry.getValue());
 
-            details.append(String.format("   - %s (x%d) $%10.2f\n",
-                    entry.getKey().getType(), entry.getValue(), toppingCost));
+            details.append(String.format("- 5%s (x%d) %10s\n",
+                    entry.getKey().getType(), entry.getValue(), String.format("$%.2f", toppingCost)));
         }
         return details.toString();
     }

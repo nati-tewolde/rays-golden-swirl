@@ -30,18 +30,18 @@ public class ReceiptFileManager {
         }
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(receipt))) {
-            writer.write("ORDER #" + order.getOrderNumber());
-            writer.write("Customer: " + order.getCustomerName());
-            writer.write("Date: " + order.getOrderDateForDisplay());
+            writer.write("ORDER #" + order.getOrderNumber() + "\n");
+            writer.write("Customer: " + order.getCustomerName() + "\n");
+            writer.write("Date: " + order.getOrderDateForDisplay() + "\n");
 
             int itemNumber = 1;
             for (Item item : order.getItems()) {
-                writer.write(itemNumber + ". ");
+                writer.write(itemNumber + ". \n");
                 writer.write(item.getReceiptDetails());
                 itemNumber += 1;
             }
 
-            writer.write("Total: " + order.calculateTotal());
+            writer.write("\nTotal: " + String.format("$%.2f", order.calculateTotal()));
 
             System.out.println("Receipt saved successfully within " + directory + fileName);
 
