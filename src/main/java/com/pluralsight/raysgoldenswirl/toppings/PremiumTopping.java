@@ -5,5 +5,7 @@ public abstract class PremiumTopping extends Topping {
         super(type);
     }
 
-    public abstract double calculatePrice(String size);
+    public abstract double getPrice(String size);
+
+    public abstract double getExtraPrice(String size);
 }

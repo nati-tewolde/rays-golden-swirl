@@ -6,7 +6,7 @@ public class Specialty extends Topping {
     }
 
     @Override
-    public double calculatePrice(String size) {
+    public double getPrice(String size) {
         return 0;
     }
 }

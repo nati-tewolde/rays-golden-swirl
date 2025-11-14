@@ -6,18 +6,13 @@ public class Nuts extends PremiumTopping {
     }
 
     @Override
-    public double calculatePrice(String size) {
-        double base = lookupBasePrice(size);
-        double extra = lookupExtraPrice(size);
-        double total = 0;
+    public double getPrice(String size) {
+        return lookupBasePrice(size);
+    }
 
-        if (getQuantity() == 1) {
-            total = base;
-        } else if (getQuantity() > 1) {
-            total = base + ((getQuantity() - 1) * extra);
-        }
-
-        return total;
+    @Override
+    public double getExtraPrice(String size) {
+        return lookupExtraPrice(size);
     }
 
     public double lookupBasePrice(String size) {
